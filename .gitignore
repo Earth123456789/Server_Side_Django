@@ -1,0 +1,15 @@
+/*/myvenv
+db.sqlite3
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
