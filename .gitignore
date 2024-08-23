@@ -1,6 +1,5 @@
-/*/myvenv
 db.sqlite3
-
+myvenv
 # Jupyter Notebook
 .ipynb_checkpoints
 
