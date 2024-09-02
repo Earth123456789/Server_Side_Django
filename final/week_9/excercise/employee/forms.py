@@ -8,6 +8,7 @@ class EmployeeForm(forms.Form):
         input_formats = ('%Y-%m-%d')
 
     Gender_Choice = (
+        (None, "Select Gender"),
         (1, "Male"),
         (2,"Female"),
         (3,"LGBT")
@@ -19,7 +20,7 @@ class EmployeeForm(forms.Form):
     gender = forms.ChoiceField(label="Gender", choices=Gender_Choice)
     birth_date = forms.DateField(label="Birth_Date", widget=DateInput)
     hire_date = forms.DateField(label="Hire_Date", widget=DateInput)
-    salary = forms.DecimalField(label="Salary", max_digits=10, decimal_places=2)
+    salary = forms.DecimalField(label="Salary", max_digits=10, decimal_places=2, initial=0)
     position = forms.ModelChoiceField(
         label="Position",
         queryset = Position.objects.all()
