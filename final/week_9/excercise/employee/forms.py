@@ -19,7 +19,7 @@ class EmployeeForm(forms.Form):
     last_name = forms.CharField(label="Last_Name", max_length=155)
     gender = forms.ChoiceField(label="Gender", choices=Gender_Choice)
     birth_date = forms.DateField(label="Birth_Date", widget=DateInput)
-    hire_date = forms.DateField(label="Hire_Date", widget=DateInput)
+    hire_date = forms.DateField(label="Hire_Date",  widget=forms.DateInput(attrs={'type': 'date'})
     salary = forms.DecimalField(label="Salary", max_digits=10, decimal_places=2, initial=0)
     position = forms.ModelChoiceField(
         label="Position",
