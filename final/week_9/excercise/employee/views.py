@@ -68,11 +68,14 @@ class EditStaff(View):
 class EditEmployeeView(View):
 
     def get(self, request):
+        # สร้าง form เปล่าๆ แล้ว render
         form = EmployeeForm()
         return render(request, "employee_form.html", {"form": form})
      
     def post(self, request):
+        # รับ post เพื่อแปลงข้อมูลให้เป็น form
         form = EmployeeForm(request.POST)
+        # แปลงข้อมูลที่ได้รับจาก post
         if form.is_valid():
             first_name = form.cleaned_data["first_name"]
             last_name = form.cleaned_data["last_name"]

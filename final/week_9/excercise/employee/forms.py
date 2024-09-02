@@ -14,13 +14,14 @@ class EmployeeForm(forms.Form):
     )
 
 
-    first_name = forms.CharField(max_length=155)
-    last_name = forms.CharField(max_length=155)
-    gender = forms.ChoiceField(choices=Gender_Choice)
-    birth_date = forms.DateField(widget=DateInput)
-    hire_date = forms.DateField(widget=DateInput)
-    salary = forms.DecimalField(max_digits=10, decimal_places=2)
+    first_name = forms.CharField(label="First_Name" , max_length=155)
+    last_name = forms.CharField(label="Last_Name", max_length=155)
+    gender = forms.ChoiceField(label="Gender", choices=Gender_Choice)
+    birth_date = forms.DateField(label="Birth_Date", widget=DateInput)
+    hire_date = forms.DateField(label="Hire_Date", widget=DateInput)
+    salary = forms.DecimalField(label="Salary", max_digits=10, decimal_places=2)
     position = forms.ModelChoiceField(
+        label="Position",
         queryset = Position.objects.all()
     )
 
