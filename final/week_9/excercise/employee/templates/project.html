@@ -8,9 +8,14 @@
 <h1>Project</h1>
 {% endblock %}
 {% block content %}
+<div>
+    <br>
+    <!-- กำหนด path ไปยังหน้า form สร้าง project -->
+    <a href="#"><button class="newemp">New Project</button></a>
+  </div>
 {% for project in projects %}
-<div class="itemGroup">
 
+<div class="itemGroup">
     <div class="item">
         <!-- โปรเจค id และ ชื่อ -->
         <div>{{ project.id }} {{ project.name }}</div>
