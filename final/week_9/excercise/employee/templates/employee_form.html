@@ -25,49 +25,49 @@
   {% csrf_token %}
 {% comment %} ระดับทั้ง form {% endcomment %}
 {{ form.non_field_errors }}
-<div class="emp-form-box">
+<div class="emp-form-box" style="margin: auto;">
     {{ form.first_name.errors }}
     <label for="{{ form.first_name.id_for_label }}">First_name: </label>
     {{ form.first_name }}
 </div>
 
-<div class="emp-form-box">
+<div class="emp-form-box" style="margin: auto;">
     {{ form.last_name.errors }}
     <label for="{{ form.last_name_for_label }}">Last_name: </label>
     {{ form.last_name }}
 </div>
 
-<div class="emp-form-box">
+<div class="emp-form-box" style="margin: auto;">
     {{ form.gender.errors }}
     <label for="{{ form.gender.id_for_label }}">Gender: </label>
     {{ form.gender }}
 </div>
 
-<div class="emp-form-box">
+<div class="emp-form-box" style="margin: auto;">
     {{ form.birth_date.errors }}
     <label for="{{ form.birth_date.id_for_label }}">Birth Date:</label>
     {{ form.birth_date }}
 </div>
 
-<div class="emp-form-box">
+<div class="emp-form-box" style="margin: auto;">
   {{ form.hire_date.errors }}
   <label for="{{ form.hire_date.id_for_label }}">Hire date:</label>
   {{ form.hire_date}}
 </div>
 
-<div class="emp-form-box">
+<div class="emp-form-box" style="margin: auto;">
   {{ form.salary.errors }}
   <label for="{{ form.salary.id_for_label }}">Salary: </label>
   {{ form.salary }}
 </div>
 
-<div class="emp-form-box">
+<div class="emp-form-box" style="margin: auto;">
   {{ form.position.errors }}
   <label for="{{ form.position.id_for_label }}">Position: </label>
   {{ form.position }}
 </div>
 
-<button type="submit" >Save</button> 
+<button type="submit" style="margin: auto;">Save</button> 
 </form>
 
 {% endblock %}
