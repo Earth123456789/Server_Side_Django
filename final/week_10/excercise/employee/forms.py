@@ -69,7 +69,7 @@ class ProjectForm(ModelForm):
         start_date = cleaned_data.get("start_date")
         due_date = cleaned_data.get("due_date")
         if start_date and due_date and start_date > due_date:
-            raise ValidationError("start date cannot be in the future.")
+            raise ValidationError("start date cannote be much than due date.")
         return cleaned_data
     
     ## ใช้เพื่อทำให้ staff ใน form ไม่เป็น required (ปกติจะเป็น required คือต้องการข้อมูล staff)
