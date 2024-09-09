@@ -37,13 +37,12 @@ class EmployeeForm(ModelForm):
         }
 
     def clean(self):
-        cleaned_data = super().clean()
-        hire_date = cleaned_data.get("hire_date")
+        hire_date = self.cleaned_data['hire_date']
         
         if hire_date and hire_date > timezone.now().date():
             raise ValidationError("Hire date cannot be in the future.")
         
-        return cleaned_data
+        return hire_date
     
 class ProjectForm(ModelForm):
 
