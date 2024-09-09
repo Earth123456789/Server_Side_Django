@@ -47,9 +47,10 @@ class EditProjectView(View):
 
         if form.is_valid():
             form.save()
-            return redirect("project")   
-             
-        return render(request, "project.html", {"form": form})
+            return redirect("project")  
+         
+        print(form.errors)
+        return render(request, "project_form.html", {"form": form})
     
     def delete(self, request, project_id):
         project = Project.objects.get(pk = project_id)
@@ -115,7 +116,7 @@ class EditEmployeeView(View):
             form.save()
             return redirect("employee")   
              
-        return render(request, "employee.html", {"form": form})
+        return render(request, "employee_form.html", {"form": form})
 
             
         

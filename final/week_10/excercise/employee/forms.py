@@ -62,13 +62,21 @@ class ProjectForm(ModelForm):
             "due_date" : forms.DateInput(attrs={'type': 'date'}),
             "start_date": DateInput()
         }
-    
+
+
     def clean(self):
         cleaned_data = super().clean()
         start_date = cleaned_data.get("start_date")
-        end_date = cleaned_data.get("end_date")
-        
-        if start_date and end_date and start_date > end_date:
+        due_date = cleaned_data.get("due_date")
+        if start_date and due_date and start_date > due_date:
             raise ValidationError("start date cannot be in the future.")
-        
         return cleaned_data
+    
+    ## ใช้เพื่อทำให้ staff ใน form ไม่เป็น required (ปกติจะเป็น required คือต้องการข้อมูล staff)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['staff'].required = False
+       
+
+
+
