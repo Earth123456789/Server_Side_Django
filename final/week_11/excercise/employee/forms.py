@@ -1,5 +1,6 @@
 from django import forms
-from .models import *
+from employee.models import Employee, Project
+from company.models import Position
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
 from django.utils import timezone
@@ -12,6 +13,10 @@ class EmployeeForm(forms.ModelForm):
     district = forms.CharField(max_length=100)
     province = forms.CharField(max_length=100)
     postal_code = forms.CharField(max_length=15)
+
+    position = forms.ModelChoiceField(
+        queryset=Position.objects.using('db2').all()
+    )
 
     class Meta:
         model = Employee

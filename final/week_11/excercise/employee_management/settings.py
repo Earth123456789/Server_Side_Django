@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'employee'
+    'employee',
+    'company'
 ]
 
 MIDDLEWARE = [
@@ -77,13 +78,24 @@ WSGI_APPLICATION = 'employee_management.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "employee_db_week_9",
-        "USER": "postgres",
+        "NAME": "employee_db", # อย่าลืมสร้าง db - employee_db ใน Postgres นะครับ
+        "USER":  "postgres",
         "PASSWORD": "Vipat",
-        "HOST": "localhost",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    },
+    "db2": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "company_db", # อย่าลืมสร้าง db - company_db ใน Postgres นะครับ
+        "USER":  "postgres",
+        "PASSWORD": "Vipat",
+        "HOST": "127.0.0.1",
         "PORT": "5432",
     }
 }
+
+DATABASE_ROUTERS = ['company.routers.CompanyRouter']
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

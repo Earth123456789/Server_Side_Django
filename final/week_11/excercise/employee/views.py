@@ -2,7 +2,8 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-from .models import *
+from employee.models import Employee, Project, EmployeeAddress
+from company.models import Position, Department
 from django.db.models import *
 from .forms import *
 from django.db import transaction
@@ -11,15 +12,19 @@ class EmployeeView(View):
     def get(self, request):
         employees = Employee.objects.order_by('-hire_date')
         employee_count = Employee.objects.count()
+        
+        for employee in employees:
+            employee.position = Position.objects.using('db2').get(pk=employee.position_id)
+        
         context = {
-            'employees' : employees,
-            'employee_count' : employee_count
+            'employees': employees,
+            'employee_count': employee_count,
         }
         return render(request, "employee.html", context)
 
 class PositionView(View):
     def get(self, request):
-        positions = Position.objects.annotate( count = Count('employee') ).order_by('id')
+        positions = Position.objects.using('db2').annotate(count=Count('name')).order_by('id')
         context = {
             'positions' : positions
         }
