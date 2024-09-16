@@ -12,9 +12,13 @@ class EmployeeView(View):
     def get(self, request):
         employees = Employee.objects.order_by('-hire_date')
         employee_count = Employee.objects.count()
-        
+
+
         for employee in employees:
-            employee.position = Position.objects.using('db2').get(pk=employee.position_id)
+            try:
+                employee.position = Position.objects.using('db2').get(pk=employee.position_id)
+            except Position.DoesNotExist:
+                employee.position = None
         
         context = {
             'employees': employees,
@@ -121,13 +125,15 @@ class EditEmployeeView(View):
         # แปลงข้อมูลที่ได้รับจาก post
         if form.is_valid():
             employee = form.save()
-            EmployeeAddress.objects.create(
+            address = EmployeeAddress(
                 employee=employee,
                 location=form.cleaned_data['location'],
                 district=form.cleaned_data['district'],
                 province=form.cleaned_data['province'],
                 postal_code=form.cleaned_data['postal_code']
             )
+            address.save()
+
             return redirect("employee")   
              
         return render(request, "employee_form.html", {"form": form})

@@ -14,7 +14,7 @@ class EmployeeForm(forms.ModelForm):
     province = forms.CharField(max_length=100)
     postal_code = forms.CharField(max_length=15)
 
-    position = forms.ModelChoiceField(
+    position_id = forms.ModelChoiceField(
         queryset=Position.objects.using('db2').all()
     )
 
@@ -27,7 +27,7 @@ class EmployeeForm(forms.ModelForm):
             "birth_date", 
             "hire_date", 
             "salary", 
-            "position",
+            "position_id",
             "location",
             "district",
             "province",
@@ -41,6 +41,8 @@ class EmployeeForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         hire_date = cleaned_data.get("hire_date")
+        position = cleaned_data.get("position_id")
+        cleaned_data["position_id"] = int(position.id)
         if hire_date and hire_date > timezone.now().date():
             raise ValidationError("Hire date cannot be in the future.")
         
