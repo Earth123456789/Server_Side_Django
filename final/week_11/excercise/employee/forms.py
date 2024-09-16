@@ -13,7 +13,7 @@ class EmployeeForm(forms.ModelForm):
     district = forms.CharField(max_length=100)
     province = forms.CharField(max_length=100)
     postal_code = forms.CharField(max_length=15)
-
+    # คืนค่าเป็น OBJ
     position_id = forms.ModelChoiceField(
         queryset=Position.objects.all()
     )
@@ -42,7 +42,7 @@ class EmployeeForm(forms.ModelForm):
         cleaned_data = super().clean()
         hire_date = cleaned_data.get("hire_date")
         position = cleaned_data.get("position_id")
-        cleaned_data["position_id"] = int(position.id)
+        cleaned_data["position_id"] = position.id
         if hire_date and hire_date > timezone.now().date():
             raise ValidationError("Hire date cannot be in the future.")
         
