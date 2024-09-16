@@ -15,7 +15,7 @@ class EmployeeForm(forms.ModelForm):
     postal_code = forms.CharField(max_length=15)
 
     position_id = forms.ModelChoiceField(
-        queryset=Position.objects.using('db2').all()
+        queryset=Position.objects.all()
     )
 
     class Meta:
