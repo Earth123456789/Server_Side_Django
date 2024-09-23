@@ -20,6 +20,12 @@
                             <button class="btn sm btn-warning m-2" id="edit-btn">Edit</button>
                     {% endif %}
                     {% if blog.author == user or user.is_staff %}
+
+                    {% comment %}
+                    หรือ ใช้วิธีนี้
+                    {% if blog.author == user and perms.blogs.change_blog %}
+                    {% endcomment %}
+
                             <button class="btn sm btn-danger m-2">
                                 <a href="{% url 'blog-delete' blog.id %}" style="text-decoration: none; color:antiquewhite">Delete</a>
                             </button>
