@@ -15,11 +15,11 @@
 
                        ** Hitt: user.is_staff, user == author
                     -->
-                    {% if perms.blogs.change_blog %}
+                    {% if perms.blogs.change_blog and blog.author == user %}
                         <div class="btn-group">
                             <button class="btn sm btn-warning m-2" id="edit-btn">Edit</button>
                     {% endif %}
-                    {% if perms.blogs.delete_blog %}
+                    {% if blog.author == user or user.is_staff %}
                             <button class="btn sm btn-danger m-2">
                                 <a href="{% url 'blog-delete' blog.id %}" style="text-decoration: none; color:antiquewhite">Delete</a>
                             </button>

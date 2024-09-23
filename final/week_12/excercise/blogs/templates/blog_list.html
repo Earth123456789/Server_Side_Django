@@ -15,7 +15,9 @@
 
     <div class="col">
         <!-- btn for manage category -->
+        {% if perms.category.add_category %}
         <a type="button" class=" btn btn-info text-white" href="{% url 'category-list' %}" >Blog Category</a>
+        {% endif %}
     </div>
     
 </div>
